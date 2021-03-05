@@ -1,12 +1,11 @@
 import processing.core.PApplet;
 
+import java.util.Vector;
+
 public class OOPsFourBalls extends  PApplet
 {
     public static final int BackGroundColor = 255;
-    Balls Ball1=new Balls();
-    Balls Ball2=new Balls();
-    Balls Ball3=new Balls();
-    Balls Ball4=new Balls();
+    Vector<Balls> balls = new Vector<Balls>();
     public static final int HEIGHT = 750;
     public static final int WIDTH = 1000;
 
@@ -19,6 +18,14 @@ public class OOPsFourBalls extends  PApplet
     public void settings() {
         super.settings();
         size(WIDTH, HEIGHT);
+        Balls Ball1=new Balls(this);
+        balls.add(Ball1);
+        Balls Ball2=new Balls(this);
+        balls.add(Ball2);
+        Balls Ball3=new Balls(this);
+        balls.add(Ball3);
+        Balls Ball4=new Balls(this);
+        balls.add(Ball4);
     }
 
     @Override
@@ -29,30 +36,22 @@ public class OOPsFourBalls extends  PApplet
     }
 
     private void setBallsHeight() {
-        Ball1.setY_coordinate((1*HEIGHT)/5);
-        Ball2.setY_coordinate((2*HEIGHT)/5);
-        Ball3.setY_coordinate((3*HEIGHT)/5);
-        Ball4.setY_coordinate((4*HEIGHT)/5);
+        int counter=1;
+        for(Balls balliterator:balls) {
+            balliterator.setY_coordinate((counter * HEIGHT) / 5);
+            counter = counter + 1;
+        }
     }
 
     @Override
     public void draw() {
-        Draw4Balls();
-    }
+        int counter=1;
+        for(Balls balliterator:balls) {
+            balliterator.draw(counter);
+            counter = counter + 1;
+        }
 
-    private void Draw4Balls() {
-        ellipse(Ball1.getX_coordinate(), Ball1.getY_coordinate(), Ball1.getRadius(), Ball1.getRadius());
-        ellipse(Ball2.getX_coordinate(), Ball2.getY_coordinate(), Ball2.getRadius(), Ball2.getRadius());
-        ellipse(Ball3.getX_coordinate(), Ball3.getY_coordinate(), Ball3.getRadius(), Ball3.getRadius());
-        ellipse(Ball4.getX_coordinate(), Ball4.getY_coordinate(), Ball4.getRadius(), Ball4.getRadius());
-        setBallsWidth();
-    }
 
-    private void setBallsWidth() {
-        Ball1.setX_coordinate(1);
-        Ball2.setX_coordinate(2);
-        Ball3.setX_coordinate(3);
-        Ball4.setX_coordinate(4);
     }
 }
 

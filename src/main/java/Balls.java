@@ -1,23 +1,16 @@
-public class Balls
+import processing.core.PApplet;
+public class Balls extends PApplet
 {
+    private PApplet pApplet;
     private final int radius;
     private int x_coordinate;
     private int y_coordinate;
 
-    public Balls()
+    public Balls(PApplet pApplet)
     {
+        this.pApplet=pApplet;
         radius=10;
         x_coordinate=0;
-    }
-
-    public int getX_coordinate()
-    {
-        return x_coordinate;
-    }
-
-    public int getY_coordinate()
-    {
-        return y_coordinate;
     }
 
     public void setX_coordinate(int Value)
@@ -31,8 +24,9 @@ public class Balls
 
     }
 
-    public int getRadius()
+    public void draw(int incrementer)
     {
-        return radius;
+        pApplet.ellipse(x_coordinate,y_coordinate,radius,radius);
+        setX_coordinate(incrementer);
     }
 }
